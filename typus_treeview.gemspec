@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Nick Recobra"]
   s.email       = ["oruenu@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/oruen/typus_treeview"
+  s.summary     = %q{Typus extension implementing Treeview.}
+  s.description = %q{Implements treeview via jquery.treeview for models using acts_as_tree.}
 
   s.rubyforge_project = "typus_treeview"
   s.add_dependency 'typus', '>= 3.0.4'
