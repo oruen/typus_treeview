@@ -10,16 +10,20 @@ module TypusTreeviewHelper
           treeview_draw(root, method)
         end.join.html_safe
       end)
-      res << javascript_tag('$(document).ready(function(){$("#treeview").treeview();});')
+      res << javascript_tag('$(document).ready(function(){$("#treeview").treeview({persist: "location"});});')
       res.html_safe
     end
   end
 
   def treeview_draw node, method
-    content_tag :li do
+    content_tag :li, :class => "closed" do
       res = ''
       name = method.is_a?(Proc) ? method.call(node) : node.send(method)
-      res << content_tag(:span, link_to_unless_current(name, {:controller=>"admin/#{@object_name.pluralize}", :action => "edit", :id => node.id}))
+      res << content_tag(:span, link_to(name, { :action => "edit",
+                                                :id => node.id,
+                                                :host => request.host,
+                                                :port => request.port == 80 ? nil : request.port,
+                                                :protocol => request.scheme }))
       if node.children.size > 0
         res << (content_tag :ul do
           node.children.map do |child|
